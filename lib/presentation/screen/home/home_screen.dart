@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:provider_architectire/core/util/logger.dart';
 import 'package:provider_architectire/domain/demo_entity.dart';
 import 'package:provider_architectire/presentation/screen/home/home_layout.dart';
+import 'package:provider_architectire/presentation/screen/home/provider/demo_list_provider.dart';
 import 'package:provider_architectire/presentation/screen/home/view/home_body_view.dart';
 import 'package:provider_architectire/presentation/screen/home/state/home_event.dart';
 import 'package:provider_architectire/presentation/screen/home/state/home_state.dart';
@@ -28,6 +30,12 @@ class HomeScreen extends BaseScreen with HomeEvent, HomeState {
         child: Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
             final AsyncValue<List<DemoEntity>> demoList = getDemoList(ref);
+            ref.listen(demoListProvider, (previousState, newState) {
+              if (newState is AsyncError) {
+                //  showDialog()
+              }
+            });
+
             return HomeBodyView(demoList: demoList);
           },
         ),
