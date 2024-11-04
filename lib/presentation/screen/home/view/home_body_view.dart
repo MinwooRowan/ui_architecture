@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:provider_architectire/domain/demo_entity.dart';
 import 'package:provider_architectire/presentation/screen/home/state/home_event.dart';
+import 'package:provider_architectire/presentation/screen/home/state/home_state.dart';
 import 'package:provider_architectire/presentation/screen/home/widget/demo_item_widget.dart';
 
-class HomeBodyView extends HookConsumerWidget with HomeEvent {
+class HomeBodyView extends HookConsumerWidget with HomeEvent, HomeState {
   final AsyncValue<List<DemoEntity>> demoList;
 
   const HomeBodyView({

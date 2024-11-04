@@ -17,7 +17,7 @@ class HomeLayout extends HookConsumerWidget {
     required this.body,
     this.footer,
     this.topSafeArea = true,
-    this.bottomSafeArea = true,
+    this.bottomSafeArea = false,
     this.backgroundColor,
   });
 

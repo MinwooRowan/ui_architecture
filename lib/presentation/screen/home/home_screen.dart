@@ -22,11 +22,17 @@ class HomeScreen extends BaseScreen with HomeEvent, HomeState {
 
   @override
   Widget buildScreen(BuildContext context, WidgetRef ref) {
-    final AsyncValue<List<DemoEntity>> demoList = getDemoList(ref);
     return HomeLayout(
       header: HomeHeaderView(),
-      body: Expanded(child: HomeBodyView(demoList: demoList)),
-      footer: HomeFooterView(demoList: demoList),
+      body: Expanded(
+        child: Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? child) {
+            final AsyncValue<List<DemoEntity>> demoList = getDemoList(ref);
+            return HomeBodyView(demoList: demoList);
+          },
+        ),
+      ),
+      footer: HomeFooterView(),
     );
   }
 }
