@@ -21,9 +21,6 @@ class HomeScreen extends BaseScreen with HomeEvent, HomeState {
   }
 
   @override
-  bool get bottomSafeArea => false;
-
-  @override
   Widget buildScreen(BuildContext context, WidgetRef ref) {
     final AsyncValue<List<DemoEntity>> demoList = getDemoList(ref);
     return HomeLayout(

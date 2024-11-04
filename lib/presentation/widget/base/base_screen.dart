@@ -19,26 +19,13 @@ abstract class BaseScreen extends HookConsumerWidget {
       canPop: false,
       child: SelectionArea(
         child: Scaffold(
-          appBar: renderAppBar(context, ref),
-          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-          bottomNavigationBar: renderBottomNavigationBar(context, ref),
-          body: SafeArea(
-            top: topSafeArea,
-            bottom: bottomSafeArea,
-            child: Stack(
-              children: [
-                if (backgroundGradient != null)
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(gradient: backgroundGradient),
-                  ),
-                buildScreen(
-                  context,
-                  ref,
-                ),
-              ],
-            ),
+          body: Stack(
+            children: [
+              buildScreen(
+                context,
+                ref,
+              ),
+            ],
           ),
         ),
       ),
@@ -46,33 +33,13 @@ abstract class BaseScreen extends HookConsumerWidget {
   }
 
   @protected
-  Widget? renderDrawer(BuildContext context, WidgetRef ref) => null;
-
-  @protected
   Widget buildScreen(BuildContext context, WidgetRef ref);
-
-  @protected
-  LinearGradient? get backgroundGradient => null;
 
   @protected
   bool get canPop => false;
 
   @protected
   bool get resizeToAvoidBottomInset => true;
-
-  @protected
-  PreferredSizeWidget? renderAppBar(BuildContext context, WidgetRef ref) =>
-      null;
-
-  @protected
-  Widget? renderBottomNavigationBar(BuildContext context, WidgetRef ref) =>
-      null;
-
-  @protected
-  bool get topSafeArea => true;
-
-  @protected
-  bool get bottomSafeArea => true;
 
   /// 앱이 활성화된 상태로 돌아올 때 호출
   @protected
